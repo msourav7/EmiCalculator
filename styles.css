@@ -239,6 +239,7 @@ input[type="range"]::-moz-range-thumb {
 .top-text h3 {
     font-size: 14px;
     text-align: left;
+    font-weight: 500;
 }
 
 
