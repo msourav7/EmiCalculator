@@ -182,7 +182,7 @@
 //     calculateEMI();
 // });
 
-//1 a good 
+//1 a good currently in use
 document.addEventListener('DOMContentLoaded', function() {
     const loanAmountInput = document.getElementById('loan-amount');
     const loanAmountRange = document.getElementById('loan-amount-range');
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalPayable = emi * numberOfMonths;
         const interestPayable = totalPayable - principal;
 
-        emiAmountDisplay.textContent = `₹ ${emi.toFixed(2)}`;
-        interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(2)}`;
+        emiAmountDisplay.textContent = `₹ ${emi.toFixed(0)}`;
+        interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(0)}`;
     }
 
     function updateRangeBackground(range) {
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const val = parseFloat(range.value);
 
         const percentage = ((val - min) / (max - min)) * 100;
-        range.style.background = `linear-gradient(to right, #ff4081 0%, #ff4081 ${percentage}%, #fff0f5 ${percentage}%, #fff0f5 100%)`;
+        range.style.background = `linear-gradient(to right, #D8107C 0%, #D8107C ${percentage}%, #d1d3d4 ${percentage}%, #d1d3d4 100%)`;
     }
 
     function validateInput(input, range) {
@@ -230,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = parseFloat(input.value);
             if (isNaN(value) || value < min) {
                 value = min;
+                // value = input.value;
             } else if (value > max) {
                 value = max;
             }
@@ -259,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateRangeBackground(range);
     }
-
+//using same validation function for the trio
     validateInput(loanAmountInput, loanAmountRange);
     validateInput(loanDurationInput, loanDurationRange);
     validateInput(interestRateInput, interestRateRange);
@@ -285,8 +286,8 @@ document.addEventListener('DOMContentLoaded', function() {
 //         const numberOfMonths = parseFloat(loanDurationInput.value) * 12;
 
 //         if (isNaN(principal) || isNaN(annualInterestRate) || isNaN(numberOfMonths) || numberOfMonths <= 0 || monthlyInterestRate <= 0) {
-//             emiAmountDisplay.textContent = '₹ NaN';
-//             interestPayableDisplay.textContent = '₹ NaN';
+//             emiAmountDisplay.textContent = '₹ 0';
+//             interestPayableDisplay.textContent = '₹ 0';
 //             return;
 //         }
 
@@ -294,8 +295,8 @@ document.addEventListener('DOMContentLoaded', function() {
 //         const totalPayable = emi * numberOfMonths;
 //         const interestPayable = totalPayable - principal;
 
-//         emiAmountDisplay.textContent = `₹ ${emi.toFixed(2)}`;
-//         interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(2)}`;
+//         emiAmountDisplay.textContent = `₹ ${emi.toFixed(0)}`;
+//         interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(0)}`;
 //     }
 
 //     function updateRangeBackground(range) {
