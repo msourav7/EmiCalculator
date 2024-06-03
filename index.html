@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,7 +26,6 @@
             <div class="input-item">
               <label for="loan-amount">Loan Amount</label>
               <div class="text-and-nos" >
-                <!-- <span class="rupee">₹ </span> -->
               <svg class="rupee-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="34" viewBox="0 0 13 19" fill="none">
                 <path d="M8.29833 4.22222C7.69167 2.97667 6.39167 2.11111 4.875 2.11111H0V0H13V2.11111H9.46833C9.98833 2.72333 10.3783 3.44111 10.6058 4.22222H13V6.33333H10.8333C10.5408 9.28889 7.98417 11.6111 4.875 11.6111H4.08417L11.375 19H8.37417L1.08333 11.6111V9.5H4.875C6.78167 9.5 8.36333 8.12778 8.62333 6.33333H0V4.22222H8.29833Z" fill="black"/>
               </svg>
@@ -68,7 +67,7 @@
                   step="0.1"
                   value="12.5"
                 />
-                <span class="months">months</span>
+                <span class="months">years</span>
               </div>
               <input
                 type="range"
@@ -134,7 +133,97 @@
     </div>
     <script src="script.js"></script>
   </body>
+</html> -->
+
+
+
+
+<!-- 3-6 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan EMI Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="top-text">
+            <h2>Calculate your Personal Loan EMIs</h2>
+            <p>
+                Get insights on your loan plan! Just select an amount ranging from Rs 10,000 to Rs 10,00,00,000, set an approximate interest rate and loan tenure between 0.5 and 30 years. The Personal Loan EMI calculator will estimate the monthly EMI amount and total interest payable till the end of the loan tenure.
+            </p>
+        </div>
+        <div class="calculator">
+            <div class="calculator-inputs">
+                <div class="input-group">
+                    <div class="input-item">
+                        <label for="loan-amount">Loan Amount</label>
+                        <div class="text-and-nos">
+                            <svg class="rupee-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="34" viewBox="0 0 13 19" fill="none">
+                                <path d="M8.29833 4.22222C7.69167 2.97667 6.39167 2.11111 4.875 2.11111H0V0H13V2.11111H9.46833C9.98833 2.72333 10.3783 3.44111 10.6058 4.22222H13V6.33333H10.8333C10.5408 9.28889 7.98417 11.6111 4.875 11.6111H4.08417L11.375 19H8.37417L1.08333 11.6111V9.5H4.875C6.78167 9.5 8.36333 8.12778 8.62333 6.33333H0V4.22222H8.29833Z" fill="black"/>
+                            </svg>
+                            <input type="number" style="padding-right: 13px; margin-left: 0px; position: relative" class="amount" id="loan-amount" name="loan-amount" min="10000" max="100000000" value="1000000"/>
+                        </div>
+                        <input type="range" id="loan-amount-range" name="loan-amount-range" min="10000" max="100000000" value="1000000"/>
+                        <div class="range-labels">
+                            <span>₹ 10,000</span>
+                            <span>₹ 10,00,00,000</span>
+                        </div>
+                        <div class="error-message" id="loan-amount-error"></div>
+                    </div>
+                    <div class="input-item">
+                        <label for="loan-duration">Loan Duration (years)</label>
+                        <div class="text-and-nos">
+                            <input type="number" class="duration" id="loan-duration" name="loan-duration" min="0.5" max="30" step="0.1" value="12.5"/>
+                            <span class="months">years</span>
+                        </div>
+                        <input type="range" id="loan-duration-range" name="loan-duration-range" min="0.5" max="30" step="0.1" value="10"/>
+                        <div class="range-labels">
+                            <span>0.5 years</span>
+                            <span>30 years</span>
+                        </div>
+                        <div class="error-message" id="loan-duration-error"></div>
+                    </div>
+                </div>
+                <div class="input-item">
+                    <label for="interest-rate">Interest Rate (%)</label>
+                    <div class="text-and-nos">
+                        <input type="number" class="rate" id="interest-rate" name="interest-rate" min="5" max="30" step="0.01" value="7.2" style="position: relative; left: 6px;"/>
+                        <span class="percentage">%</span>
+                    </div>
+                    <input type="range" id="interest-rate-range" name="interest-rate-range" min="5" max="30" step="0.01" value="7.2"/>
+                    <div class="range-labels">
+                        <span>5%</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="error-message" id="interest-rate-error"></div>
+                </div>
+                <p class="disclaimer">
+                    <strong class="strongDisclaimer">Disclaimer*:</strong> Our Personal Loan EMI calculator offers estimated monthly installments. Actual loan terms and eligibility are subject to bank approval. For precise loan details, consult our representatives before decisions based on these estimates.
+                </p>
+            </div>
+            <div class="calculator-results">
+                <p>EMI Amount</p>
+                <h3 id="emi-amount">₹ 0</h3>
+                <p>Interest Payable</p>
+                <h3 id="interest-payable">₹ 0</h3>
+                <button>APPLY FOR PERSONAL LOAN</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
+
+
+
+
+
+
+
 
 
 <!-- <!DOCTYPE html>

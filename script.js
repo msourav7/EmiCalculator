@@ -183,90 +183,90 @@
 // });
 
 //1 a good currently in use
-document.addEventListener('DOMContentLoaded', function() {
-    const loanAmountInput = document.getElementById('loan-amount');
-    const loanAmountRange = document.getElementById('loan-amount-range');
-    const loanDurationInput = document.getElementById('loan-duration');
-    const loanDurationRange = document.getElementById('loan-duration-range');
-    const interestRateInput = document.getElementById('interest-rate');
-    const interestRateRange = document.getElementById('interest-rate-range');
-    const emiAmountDisplay = document.getElementById('emi-amount');
-    const interestPayableDisplay = document.getElementById('interest-payable');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const loanAmountInput = document.getElementById('loan-amount');
+//     const loanAmountRange = document.getElementById('loan-amount-range');
+//     const loanDurationInput = document.getElementById('loan-duration');
+//     const loanDurationRange = document.getElementById('loan-duration-range');
+//     const interestRateInput = document.getElementById('interest-rate');
+//     const interestRateRange = document.getElementById('interest-rate-range');
+//     const emiAmountDisplay = document.getElementById('emi-amount');
+//     const interestPayableDisplay = document.getElementById('interest-payable');
 
-    function calculateEMI() {
-        const principal = parseFloat(loanAmountInput.value);
-        const annualInterestRate = parseFloat(interestRateInput.value);
-        const monthlyInterestRate = annualInterestRate / 12 / 100;
-        const numberOfMonths = parseFloat(loanDurationInput.value) * 12;
+//     function calculateEMI() {
+//         const principal = parseFloat(loanAmountInput.value);
+//         const annualInterestRate = parseFloat(interestRateInput.value);
+//         const monthlyInterestRate = annualInterestRate / 12 / 100;
+//         const numberOfMonths = parseFloat(loanDurationInput.value) * 12;
 
-        if (isNaN(principal) || isNaN(annualInterestRate) || isNaN(numberOfMonths) || numberOfMonths <= 0 || monthlyInterestRate <= 0) {
-            emiAmountDisplay.textContent = '₹ NaN';
-            interestPayableDisplay.textContent = '₹ NaN';
-            return;
-        }
+//         if (isNaN(principal) || isNaN(annualInterestRate) || isNaN(numberOfMonths) || numberOfMonths <= 0 || monthlyInterestRate <= 0) {
+//             emiAmountDisplay.textContent = '₹ NaN';
+//             interestPayableDisplay.textContent = '₹ NaN';
+//             return;
+//         }
 
-        const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfMonths)) / (Math.pow(1 + monthlyInterestRate, numberOfMonths) - 1);
-        const totalPayable = emi * numberOfMonths;
-        const interestPayable = totalPayable - principal;
+//         const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfMonths)) / (Math.pow(1 + monthlyInterestRate, numberOfMonths) - 1);
+//         const totalPayable = emi * numberOfMonths;
+//         const interestPayable = totalPayable - principal;
 
-        emiAmountDisplay.textContent = `₹ ${emi.toFixed(0)}`;
-        interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(0)}`;
-    }
+//         emiAmountDisplay.textContent = `₹ ${emi.toFixed(0)}`;
+//         interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(0)}`;
+//     }
 
-    function updateRangeBackground(range) {
-        const min = parseFloat(range.min);
-        const max = parseFloat(range.max);
-        const val = parseFloat(range.value);
+//     function updateRangeBackground(range) {
+//         const min = parseFloat(range.min);
+//         const max = parseFloat(range.max);
+//         const val = parseFloat(range.value);
 
-        const percentage = ((val - min) / (max - min)) * 100;
-        range.style.background = `linear-gradient(to right, #D8107C 0%, #D8107C ${percentage}%, #d1d3d4 ${percentage}%, #d1d3d4 100%)`;
-    }
+//         const percentage = ((val - min) / (max - min)) * 100;
+//         range.style.background = `linear-gradient(to right, #D8107C 0%, #D8107C ${percentage}%, #d1d3d4 ${percentage}%, #d1d3d4 100%)`;
+//     }
 
-    function validateInput(input, range) {
-        const min = parseFloat(range.min);
-        const max = parseFloat(range.max);
-        input.addEventListener('input', () => {
-            if (input.value === '') return;
-            let value = parseFloat(input.value);
-            if (isNaN(value) || value < min) {
-                value = min;
-                // value = input.value;
-            } else if (value > max) {
-                value = max;
-            }
-            input.value = value;
-            range.value = value;
-            calculateEMI();
-            updateRangeBackground(range);
-        });
+//     function validateInput(input, range) {
+//         const min = parseFloat(range.min);
+//         const max = parseFloat(range.max);
+//         input.addEventListener('input', () => {
+//             if (input.value === '') return;
+//             let value = parseFloat(input.value);
+//             if (isNaN(value) || value < min) {
+//                 value = min;
+//                 // value = input.value;
+//             } else if (value > max) {
+//                 value = max;
+//             }
+//             input.value = value;
+//             range.value = value;
+//             calculateEMI();
+//             updateRangeBackground(range);
+//         });
 
-        input.addEventListener('blur', () => {
-            let value = parseFloat(input.value);
-            if (isNaN(value) || value < min) {
-                input.value = min;
-            } else if (value > max) {
-                input.value = max;
-            }
-            range.value = input.value;
-            calculateEMI();
-            updateRangeBackground(range);
-        });
+//         input.addEventListener('blur', () => {
+//             let value = parseFloat(input.value);
+//             if (isNaN(value) || value < min) {
+//                 input.value = min;
+//             } else if (value > max) {
+//                 input.value = max;
+//             }
+//             range.value = input.value;
+//             calculateEMI();
+//             updateRangeBackground(range);
+//         });
 
-        range.addEventListener('input', () => {
-            input.value = range.value;
-            calculateEMI();
-            updateRangeBackground(range);
-        });
+//         range.addEventListener('input', () => {
+//             input.value = range.value;
+//             calculateEMI();
+//             updateRangeBackground(range);
+//         });
 
-        updateRangeBackground(range);
-    }
-//using same validation function for the trio
-    validateInput(loanAmountInput, loanAmountRange);
-    validateInput(loanDurationInput, loanDurationRange);
-    validateInput(interestRateInput, interestRateRange);
+//         updateRangeBackground(range);
+//     }
+// //using same validation function for the trio
+//     validateInput(loanAmountInput, loanAmountRange);
+//     validateInput(loanDurationInput, loanDurationRange);
+//     validateInput(interestRateInput, interestRateRange);
 
-    calculateEMI();
-});
+//     calculateEMI();
+// });
 
 //1 b 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //         }
 //         let value = parseFloat(input.value);
 //         if (isNaN(value) || value < min || value > max) {
-//             errorMessageElement.textContent = 'Entered value is invalid.';
+//             errorMessageElement.textContent = 'Please enter correct loan amount.';
 //             return false;
 //         } else {
 //             errorMessageElement.textContent = '';
@@ -435,6 +435,93 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //     calculateEMI();
 // });
+
+//3-6
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loanAmountInput = document.getElementById('loan-amount');
+    const loanAmountRange = document.getElementById('loan-amount-range');
+    const loanDurationInput = document.getElementById('loan-duration');
+    const loanDurationRange = document.getElementById('loan-duration-range');
+    const interestRateInput = document.getElementById('interest-rate');
+    const interestRateRange = document.getElementById('interest-rate-range');
+    const emiAmountDisplay = document.getElementById('emi-amount');
+    const interestPayableDisplay = document.getElementById('interest-payable');
+    const loanAmountError = document.getElementById('loan-amount-error');
+    const loanDurationError = document.getElementById('loan-duration-error');
+    const interestRateError = document.getElementById('interest-rate-error');
+
+    function calculateEMI() {
+        const principal = parseFloat(loanAmountInput.value);
+        const annualInterestRate = parseFloat(interestRateInput.value);
+        const monthlyInterestRate = annualInterestRate / 12 / 100;
+        const numberOfMonths = parseFloat(loanDurationInput.value) * 12;
+
+        if (isNaN(principal) || isNaN(annualInterestRate) || isNaN(numberOfMonths) || numberOfMonths <= 0 || monthlyInterestRate <= 0 ) {
+                         emiAmountDisplay.textContent = '₹ 0';
+                         interestPayableDisplay.textContent = '₹ 0';
+                         return;
+                     }
+
+        const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfMonths)) / (Math.pow(1 + monthlyInterestRate, numberOfMonths) - 1);
+        const totalPayable = emi * numberOfMonths;
+        const interestPayable = totalPayable - principal;
+
+        emiAmountDisplay.textContent = `₹ ${emi.toFixed(0)}`;
+        interestPayableDisplay.textContent = `₹ ${interestPayable.toFixed(0)}`;
+    }
+
+    function updateRangeBackground(range) {
+        const min = parseFloat(range.min);
+        const max = parseFloat(range.max);
+        const val = parseFloat(range.value);
+
+        const percentage = ((val - min) / (max - min)) * 100;
+        range.style.background = `linear-gradient(to right, #ff4081 0%, #ff4081 ${percentage}%, #fff0f5 ${percentage}%, #fff0f5 100%)`;
+    }
+
+    function validateInput(input, min, max, errorMessageElement, errorMessage) {
+        if (input.value === '') {
+            errorMessageElement.textContent = '';
+            return;
+        }
+        let value = parseFloat(input.value);
+        if (isNaN(value) || value < min || value > max) {
+            errorMessageElement.textContent = errorMessage;
+            return false;
+        } else {
+            errorMessageElement.textContent = '';
+            return true;
+        }
+    }
+
+    function syncInputs(input, range, errorMessageElement, errorMessage) {
+        input.addEventListener('input', () => {
+            const isValid = validateInput(input, parseFloat(range.min), parseFloat(range.max), errorMessageElement, errorMessage);
+            if (isValid) {
+                range.value = input.value;
+                calculateEMI();
+                updateRangeBackground(range);
+            }
+        });
+
+        range.addEventListener('input', () => {
+            input.value = range.value;
+            calculateEMI();
+            updateRangeBackground(range);
+        });
+
+        // Initial background update
+        updateRangeBackground(range);
+    }
+
+    syncInputs(loanAmountInput, loanAmountRange, loanAmountError, 'Please enter correct loan amount.');
+    syncInputs(loanDurationInput, loanDurationRange, loanDurationError, 'Please enter correct loan duration.');
+    syncInputs(interestRateInput, interestRateRange, interestRateError, 'Please enter correct interest rate.');
+
+    calculateEMI();
+});
+
 
 
 
